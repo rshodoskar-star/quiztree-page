@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>قريباً - Quiz Tree | جامعة الملك فيصل</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Tajawal', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        /* خلفية متحركة */
+        .background-animation {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .circle {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            animation: float 20s infinite ease-in-out;
+        }
+
+        .circle:nth-child(1) { 
+            width: 300px; 
+            height: 300px; 
+            top: -150px; 
+            left: -150px; 
+            animation-delay: 0s; 
+        }
+        
+        .circle:nth-child(2) { 
+            width: 200px; 
+            height: 200px; 
+            bottom: -100px; 
+            right: -100px; 
+            animation-delay: 3s; 
+        }
+        
+        .circle:nth-child(3) { 
+            width: 150px; 
+            height: 150px; 
+            top: 50%; 
+            right: 10%; 
+            animation-delay: 6s; 
+        }
+        
+        .circle:nth-child(4) { 
+            width: 100px; 
+            height: 100px; 
+            bottom: 20%; 
+            left: 15%; 
+            animation-delay: 9s; 
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-50px) rotate(180deg); }
+        }
+
+        /* المحتوى الرئيسي */
+        .container {
+            position: relative;
+            z-index: 1;
+            background: white;
+            border-radius: 25px;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.3);
+            max-width: 950px;
+            width: 95%;
+            min-height: auto;
+            overflow: visible;
+            display: grid;
+            grid-template-columns: 1.1fr 1fr;
+            animation: slideUp 1s ease-out;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* القسم الأيسر */
+        .left-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 45px 40px;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* الشكل الزاوي */
+        .left-section::before {
+            content: '';
+            position: absolute;
+            right: -30px;
+            top: 0;
+            bottom: 0;
+            width: 60px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            transform: skewX(-8deg);
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .left-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* الشعار */
+        .logo {
+            width: 100px;
+            margin-bottom: 20px;
+            filter: brightness(0) invert(1) drop-shadow(0 5px 15px rgba(0, 0, 0, 0.2));
+            animation: logoFloat 3s ease-in-out infinite;
+        }
+
+        @keyframes logoFloat {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .title {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 12px;
+            text-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+            line-height: 1.2;
+        }
+
+        .subtitle {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            opacity: 0.95;
+        }
+
+        .description {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-bottom: 25px;
+            opacity: 0.92;
+        }
+
+        /* المميزات */
+        .features {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .feature {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: rgba(255, 255, 255, 0.15);
+            padding: 12px 15px;
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .feature:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateX(-5px);
+        }
+
+        .feature-icon {
+            width: 42px;
+            height: 42px;
+            background: white;
+            color: #667eea;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            flex-shrink: 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-text {
+            font-size: 0.95rem;
+            font-weight: 500;
+            line-height: 1.4;
+        }
+
+        /* القسم الأيمن - الفورم */
+        .right-section {
+            padding: 45px 35px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            overflow-y: visible;
+        }
+
+        .form-title {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #333;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: #555;
+        }
+
+        .form-input,
+        .form-textarea {
+            width: 100%;
+            padding: 12px 14px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            background: #f9f9f9;
+            color: #333;
+            font-family: 'Tajawal', sans-serif;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus,
+        .form-textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .form-input::placeholder,
+        .form-textarea::placeholder {
+            color: #999;
+        }
+
+        .form-textarea {
+            resize: vertical;
+            min-height: 90px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-family: 'Tajawal', sans-serif;
+            font-size: 1.05rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 2px solid #e0e0e0;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .footer strong {
+            color: #667eea;
+            font-size: 1rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+
+            .left-section::before {
+                display: none;
+            }
+
+            .left-section {
+                padding: 35px 30px;
+            }
+
+            .right-section {
+                padding: 35px 30px;
+            }
+
+            .title {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 10px;
+            }
+
+            .container {
+                border-radius: 20px;
+            }
+
+            .left-section {
+                padding: 30px 25px;
+            }
+
+            .right-section {
+                padding: 30px 25px;
+            }
+
+            .title {
+                font-size: 2.2rem;
+            }
+
+            .subtitle {
+                font-size: 1.1rem;
+            }
+
+            .description {
+                font-size: 0.9rem;
+            }
+
+            .logo {
+                width: 85px;
+            }
+        }
+
+        /* رسالة النجاح */
+        .success-message {
+            display: none;
+            background: #4CAF50;
+            color: white;
+            padding: 12px;
+            border-radius: 10px;
+            text-align: center;
+            margin-bottom: 15px;
+            font-weight: 600;
+            animation: slideDown 0.3s ease-out;
+        }
+
+        .success-message.show {
+            display: block;
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .error-message {
+            display: none;
+            background: #f44336;
+            color: white;
+            padding: 12px;
+            border-radius: 10px;
+            text-align: center;
+            margin-bottom: 15px;
+            font-weight: 600;
+            animation: slideDown 0.3s ease-out;
+        }
+
+        .error-message.show {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <!-- الخلفية المتحركة -->
+    <div class="background-animation">
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+    </div>
+
+    <!-- المحتوى الرئيسي -->
+    <div class="container">
+        <!-- القسم الأيسر -->
+        <div class="left-section">
+            <div class="left-content">
+                <!-- الشعار -->
+                <svg class="logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 694 1211">
+                    <g transform="translate(1947 -6625)">
+                        <g transform="translate(-2140 6432)">
+                            <g transform="translate(-302.5 104)">
+                                <g transform="translate(-1505 -1829)">
+                                    <path d="M464.024,457.807h-91.71a10.09,10.09,0,0,1-7.13-2.95l-12.58-12.59a10.065,10.065,0,0,0-12.59-1.33c-1.73,1.12-3.48,2.23-5.24,3.3A219.415,219.415,0,0,1,59.924,107.6a218.071,218.071,0,0,1,135.39-68.84,223.5,223.5,0,0,1,30.37-1.41,218.991,218.991,0,0,1,214.56,219.32c0,1.16-.01,2.33-.03,3.49a10.046,10.046,0,0,1-10.07,9.85h-64.86a10.089,10.089,0,0,1-10.07-10.37q.03-1.485.03-2.97a133.662,133.662,0,0,0-8.93-48.18,10.008,10.008,0,0,1,2.31-10.66l15.9-15.9a10.08,10.08,0,0,0,2.01-11.37l-1.16-2.49c-.11-.23-.22-.47-.34-.7a114.774,114.774,0,0,0-54.35-54.65,116.171,116.171,0,0,0-19.59-7.24,14.164,14.164,0,0,0-3.64-.48,14.013,14.013,0,0,0-9.91,4.1L263,123.637a10.133,10.133,0,0,1-9.63,2.63,134.485,134.485,0,0,0-32.5-3.97c-74.1,0-134.37,60.28-134.37,134.37s60.27,134.37,134.37,134.37a133.763,133.763,0,0,0,50.75-9.95c.05-.02.09-.04.14-.06,6.64-2.64,8.23-11.37,3.17-16.43l-14.94-14.94-34.38-34.37a10.067,10.067,0,0,0-14.25,0L183.654,343a10.133,10.133,0,0,1-12.14,1.62,101.324,101.324,0,0,1-46.18-55.59,10.071,10.071,0,0,1,2.43-10.35l155.41-155.41a10.071,10.071,0,0,1,10.35-2.43,100.23,100.23,0,0,1,17.16,7.68,101.565,101.565,0,0,1,38.43,38.5c.06.12.13.23.18.35a10.113,10.113,0,0,1-1.8,11.79l-61.78,61.77a10.067,10.067,0,0,0,0,14.25l185.44,185.44a10.072,10.072,0,0,1-7.13,17.19" transform="translate(2110 2069)" fill="#fff"/>
+                                    <path d="M434.336,30.819A132.162,132.162,0,0,1,413.349,3.073a6.094,6.094,0,0,0-10.586,0,132.162,132.162,0,0,1-20.987,27.746A131.509,131.509,0,0,1,353.2,52.765a6.12,6.12,0,0,0,0,10.66,132.37,132.37,0,0,1,49.564,49.692,6.094,6.094,0,0,0,10.586,0,132.37,132.37,0,0,1,49.564-49.692,6.119,6.119,0,0,0,0-10.66,131.509,131.509,0,0,1-28.577-21.946" transform="translate(2110 2069)" fill="#fff"/>
+                                </g>
+                            </g>
+                            <g>
+                                <path d="M135.36,707.516l-16.7-16.489q1.175-2.355,2.117-4.713t1.882-4.948a72.554,72.554,0,0,0,2.235-8.244,85.147,85.147,0,0,0,1.294-8.954q.47-4.947.706-11.307t.235-15.314q0-8.949-.235-15.311t-.706-11.31a85.2,85.2,0,0,0-1.294-8.951,72.84,72.84,0,0,0-2.235-8.248q-6.351-19.552-21.761-29.213t-36.582-9.659q-20.942,0-36.582,9.777T5.97,593.727a72.215,72.215,0,0,0-2.235,8.248,83.147,83.147,0,0,0-1.294,8.951q-.474,4.951-.706,11.31T1.5,637.547q0,8.953.235,15.314t.706,11.307a83.1,83.1,0,0,0,1.294,8.954,71.933,71.933,0,0,0,2.235,8.244q6.114,19.559,21.761,29.217t36.582,9.656a71.526,71.526,0,0,0,32.465-7.3l16.233,16.244a2.285,2.285,0,0,0,1.882.823,2.789,2.789,0,0,0,1.647-.823l18.82-18.365a2.066,2.066,0,0,0,0-3.3M92.073,653.625q-.237,6.219-.706,10.212L85.015,657.5q-1.647-1.644-3.528,0L62.666,675.338a2.051,2.051,0,0,0,0,3.287l10.116,10.093a33.329,33.329,0,0,1-8.469.938q-9.881,0-16.35-4.694a24.526,24.526,0,0,1-9.058-12.91,33.2,33.2,0,0,1-1.176-4.812q-.474-2.7-.823-6.69t-.471-9.623q-.12-5.636-.117-13.38t.117-13.376q.117-5.636.471-9.624t.823-6.69a33.39,33.39,0,0,1,1.176-4.816,24.535,24.535,0,0,1,9.058-12.909q6.468-4.692,16.35-4.7t16.35,4.7a24.579,24.579,0,0,1,9.058,12.909,33.79,33.79,0,0,1,1.176,4.816q.468,2.7.823,6.69t.471,9.624q.115,5.634.118,13.376,0,9.858-.236,16.078" transform="translate(302.5 344)" fill="#fff"/>
+                                <path d="M275.335,658.838V560.031a2.081,2.081,0,0,0-2.353-2.352H243.1a2.08,2.08,0,0,0-2.353,2.352v99.748q0,14.354-7.293,22.114t-19.29,7.764q-12.236,0-19.527-7.764t-7.293-22.114V560.031A2.08,2.08,0,0,0,185,557.679H155.12a2.08,2.08,0,0,0-2.353,2.352v98.807a70.811,70.811,0,0,0,4.588,26.349,52.035,52.035,0,0,0,32.112,31.053,73.523,73.523,0,0,0,24.7,4,72.512,72.512,0,0,0,24.584-4,52.238,52.238,0,0,0,31.995-31.053,70.831,70.831,0,0,0,4.587-26.349" transform="translate(302.5 344)" fill="#fff"/>
+                                <path d="M307.562,717.652h29.877a2.08,2.08,0,0,0,2.353-2.353V560.031a2.082,2.082,0,0,0-2.353-2.353H307.562a2.08,2.08,0,0,0-2.353,2.353V715.3a2.079,2.079,0,0,0,2.353,2.353" transform="translate(302.5 344)" fill="#fff"/>
+                                <path d="M473.415,588.5a3.8,3.8,0,0,0,.706-2.352V560.265a2.081,2.081,0,0,0-2.352-2.352H369.432a2.071,2.071,0,0,0-2.352,2.334v25.915a2.069,2.069,0,0,0,2.352,2.334h64.7v.47l-68.929,98.1a4.544,4.544,0,0,0-.706,2.353V715.3a2.078,2.078,0,0,0,2.352,2.352H471.769a2.071,2.071,0,0,0,2.352-2.334V689.4a2.073,2.073,0,0,0-2.352-2.334H404.25v-.47Z" transform="translate(302.5 344)" fill="#fff"/>
+                                <path d="M105.29,764.074H4.388A1.882,1.882,0,0,0,2.259,766.2v13.411a1.881,1.881,0,0,0,2.129,2.129H43.982a1.128,1.128,0,0,1,1.277,1.277V906.7a1.891,1.891,0,0,0,2.152,2.128H62.266a1.891,1.891,0,0,0,2.152-2.128V783.02a1.129,1.129,0,0,1,1.277-1.277h39.6a1.882,1.882,0,0,0,2.129-2.129V766.2a1.883,1.883,0,0,0-2.129-2.129" transform="translate(302.5 344)" fill="#fff"/>
+                                <path d="M201.294,845.179A41.015,41.015,0,0,0,222.155,830.7q7.664-10.218,7.664-24.907a43.375,43.375,0,0,0-3.306-17.136,37.382,37.382,0,0,0-9.28-13.2,42.133,42.133,0,0,0-14.3-8.408,54.753,54.753,0,0,0-18.557-2.98H131.9a1.883,1.883,0,0,0-2.132,2.129V906.7a1.89,1.89,0,0,0,2.152,2.128h14.855a1.892,1.892,0,0,0,2.152-2.128V848.8a1.129,1.129,0,0,1,1.277-1.277h31.818L210.873,906.7a2.917,2.917,0,0,0,2.8,2.128h17.212a1.571,1.571,0,0,0,1.491-.745,1.74,1.74,0,0,0-.213-1.809ZM150.2,829.852a1.129,1.129,0,0,1-1.277-1.278V783.02a1.129,1.129,0,0,1,1.277-1.277h33.727q12.728,0,19.728,6.279t7,17.775q0,11.5-7,17.775t-19.728,6.28Z" transform="translate(302.5 344)" fill="#fff"/>
+                                <path d="M350.516,764.074H263.261a1.892,1.892,0,0,0-2.152,2.129V906.7a1.89,1.89,0,0,0,2.152,2.128h87.255a1.882,1.882,0,0,0,2.129-2.128V893.289a1.884,1.884,0,0,0-2.129-2.129H281.545a1.129,1.129,0,0,1-1.277-1.277V845.817a1.129,1.129,0,0,1,1.277-1.277h58.54a1.882,1.882,0,0,0,2.129-2.129V829a1.883,1.883,0,0,0-2.129-2.128h-58.54a1.129,1.129,0,0,1-1.277-1.278V783.02a1.129,1.129,0,0,1,1.277-1.277h68.971a1.882,1.882,0,0,0,2.129-2.129V766.2a1.883,1.883,0,0,0-2.129-2.129" transform="translate(302.5 344)" fill="#fff"/>
+                                <path d="M470.362,764.074H383.107a1.892,1.892,0,0,0-2.152,2.129V906.7a1.89,1.89,0,0,0,2.152,2.128h87.255a1.882,1.882,0,0,0,2.129-2.128V893.289a1.884,1.884,0,0,0-2.129-2.129H401.391a1.129,1.129,0,0,1-1.278-1.277V845.817a1.129,1.129,0,0,1,1.278-1.277h58.54a1.882,1.882,0,0,0,2.129-2.129V829a1.883,1.883,0,0,0-2.129-2.128h-58.54a1.13,1.13,0,0,1-1.278-1.278V783.02a1.129,1.129,0,0,1,1.278-1.277h68.971a1.882,1.882,0,0,0,2.129-2.129V766.2a1.883,1.883,0,0,0-2.129-2.129" transform="translate(302.5 344)" fill="#fff"/>
+                            </g>
+                        </g>
+                    </g>
+                </svg>
+                
+                <h1 class="title">قريباً</h1>
+                <h2 class="subtitle">منصة تعليمية متكاملة</h2>
+                <p class="description">نعمل حالياً على إطلاق منصة تعليمية متكاملة لطلاب جامعة الملك فيصل للدبلوم عن بعد تساعدك على التفوق والنجاح في دراستك الجامعية</p>
+                
+                <!-- المميزات -->
+                <div class="features">
+                    <div class="feature">
+                        <div class="feature-icon">📚</div>
+                        <span class="feature-text">مواد دراسية متكاملة ومنظمة</span>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon">✨</div>
+                        <span class="feature-text">اختبارات تفاعلية ومتنوعة</span>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon">🎯</div>
+                        <span class="feature-text">تتبع التقدم والإنجازات</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- القسم الأيمن - الفورم -->
+        <div class="right-section">
+            <h2 class="form-title">تواصل معنا</h2>
+            
+            <!-- رسالة النجاح -->
+            <div class="success-message" id="successMessage">
+                تم إرسال رسالتك بنجاح! سنتواصل معك قريباً ✓
+            </div>
+
+            <!-- رسالة الخطأ -->
+            <div class="error-message" id="errorMessage">
+                عذراً، حدث خطأ في الإرسال. يرجى المحاولة مرة أخرى.
+            </div>
+            
+            <form id="contactForm" action="https://formspree.io/f/xgvejkle" method="POST">
+                <div class="form-group">
+                    <label for="name" class="form-label">الاسم الكامل</label>
+                    <input type="text" id="name" name="name" class="form-input" placeholder="أدخل اسمك الكامل" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email" class="form-label">البريد الإلكتروني</label>
+                    <input type="email" id="email" name="email" class="form-input" placeholder="example@email.com" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone" class="form-label">رقم الهاتف (اختياري)</label>
+                    <input type="tel" id="phone" name="phone" class="form-input" placeholder="+966 5X XXX XXXX">
+                </div>
+
+                <div class="form-group">
+                    <label for="message" class="form-label">رسالتك</label>
+                    <textarea id="message" name="message" class="form-textarea" placeholder="اكتب رسالتك هنا..." required></textarea>
+                </div>
+
+                <!-- حقل مخفي لإرسال نسخة للإيميل المطلوب -->
+                <input type="hidden" name="_cc" value="r.00@msn.com">
+                <input type="hidden" name="_subject" value="رسالة جديدة من موقع Quiz Tree">
+                <input type="hidden" name="_next" value="">
+
+                <button type="submit" class="submit-btn">
+                    <span>إرسال الرسالة</span>
+                    <span>✉️</span>
+                </button>
+            </form>
+
+            <div class="footer">
+                <strong>جامعة الملك فيصل</strong><br>
+                ترقبوا الإطلاق قريباً ✨
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // معالجة إرسال الفورم
+        const form = document.getElementById('contactForm');
+        const successMessage = document.getElementById('successMessage');
+        const errorMessage = document.getElementById('errorMessage');
+
+        form.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(form);
+            const submitBtn = form.querySelector('.submit-btn');
+            const originalBtnText = submitBtn.innerHTML;
+            
+            // تغيير نص الزر
+            submitBtn.innerHTML = '<span>جاري الإرسال...</span> ⏳';
+            submitBtn.disabled = true;
+            
+            try {
+                const response = await fetch(form.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+
+                if (response.ok) {
+                    // إظهار رسالة النجاح
+                    successMessage.classList.add('show');
+                    errorMessage.classList.remove('show');
+                    
+                    // إعادة تعيين الفورم
+                    form.reset();
+                    
+                    // إخفاء الرسالة بعد 5 ثواني
+                    setTimeout(() => {
+                        successMessage.classList.remove('show');
+                    }, 5000);
+                } else {
+                    throw new Error('Form submission failed');
+                }
+            } catch (error) {
+                // إظهار رسالة الخطأ
+                errorMessage.classList.add('show');
+                successMessage.classList.remove('show');
+                
+                setTimeout(() => {
+                    errorMessage.classList.remove('show');
+                }, 5000);
+            } finally {
+                // إعادة الزر لحالته الطبيعية
+                submitBtn.innerHTML = originalBtnText;
+                submitBtn.disabled = false;
+            }
+        });
+
+        // تأثير الخلفية المتحركة
+        document.addEventListener('mousemove', function(e) {
+            const circles = document.querySelectorAll('.circle');
+            circles.forEach((circle, index) => {
+                const speed = (index + 1) * 0.015;
+                const x = (window.innerWidth - e.pageX * speed) / 100;
+                const y = (window.innerHeight - e.pageY * speed) / 100;
+                circle.style.transform = `translate(${x}px, ${y}px)`;
+            });
+        });
+    </script>
+</body>
+</html>
