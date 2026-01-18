@@ -1,0 +1,15 @@
+==========================================
+   START HERE - Quiz Tree Update
+==========================================
+
+Double-click on this file to update:
+
+    update.bat
+
+Then follow the instructions!
+
+==========================================
+
+Need help? Open: QUICK-START.txt
+
+==========================================

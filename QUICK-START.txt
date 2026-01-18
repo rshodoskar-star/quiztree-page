@@ -1,0 +1,76 @@
+================================================
+  Quiz Tree - Quick Start Guide
+================================================
+
+Repository: https://github.com/rshodoskar-star/quiztree-page
+
+================================================
+  HOW TO UPDATE:
+================================================
+
+1. Double-click on: update.bat
+
+2. Follow the instructions in the window
+
+3. Done!
+
+================================================
+  IF IT ASKS FOR PASSWORD:
+================================================
+
+GitHub no longer accepts regular passwords.
+Use Personal Access Token instead:
+
+1. Go to: https://github.com/settings/tokens
+
+2. Click "Generate new token (classic)"
+
+3. Select these options:
+   - Note: "Quiz Tree Update"
+   - Expiration: 90 days
+   - Scopes: [X] repo (check this only)
+
+4. Click "Generate token"
+
+5. Copy the token (shown only once!)
+
+6. When prompted:
+   - Username: rshodoskar-star
+   - Password: [paste your token here]
+
+================================================
+  AFTER SUCCESS:
+================================================
+
+Your page will be live at:
+https://rshodoskar-star.github.io/quiztree-page/
+
+Updates appear in 1-2 minutes
+
+================================================
+  UPDATES IN THIS VERSION:
+================================================
+
+[X] Fixed max-height 90vh issue
+[X] Fixed missing icons (books, stars, target)
+[X] Fixed design cut-off on right side  
+[X] Added email copy to r.00@msn.com
+[X] Improved responsive design
+[X] Better overflow handling
+
+================================================
+  FILES IN THIS FOLDER:
+================================================
+
+index.html          - Updated coming soon page (24KB)
+coming-soon.html    - Backup copy
+README.md           - Project description
+update.bat          - Update script (USE THIS!)
+QUICK-START.txt     - This file
+
+================================================
+
+Good luck!
+Quiz Tree Team
+
+================================================
