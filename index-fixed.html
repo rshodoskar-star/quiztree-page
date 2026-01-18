@@ -4,14 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>قريباً - Quiz Tree | جامعة الملك فيصل</title>
-
-    <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="favicon.svg">
-    <link rel="icon" type="image/png" sizes="32x32" href="favicon.svg">
-    <link rel="icon" type="image/png" sizes="16x16" href="favicon.svg">
-    <link rel="apple-touch-icon" href="favicon.svg">
-    <link rel="shortcut icon" href="favicon.svg">
-
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
     <style>
         * {
@@ -31,7 +23,6 @@
             overflow-x: hidden;
         }
 
-        /* ... (باقي CSS نفسه) ... */
         /* خلفية متحركة */
         .background-animation {
             position: fixed;
@@ -50,16 +41,44 @@
             animation: float 20s infinite ease-in-out;
         }
 
-        .circle:nth-child(1) { width: 300px; height: 300px; top: -150px; left: -150px; animation-delay: 0s; }
-        .circle:nth-child(2) { width: 200px; height: 200px; bottom: -100px; right: -100px; animation-delay: 3s; }
-        .circle:nth-child(3) { width: 150px; height: 150px; top: 50%; right: 10%; animation-delay: 6s; }
-        .circle:nth-child(4) { width: 100px; height: 100px; bottom: 20%; left: 15%; animation-delay: 9s; }
+        .circle:nth-child(1) { 
+            width: 300px; 
+            height: 300px; 
+            top: -150px; 
+            left: -150px; 
+            animation-delay: 0s; 
+        }
+        
+        .circle:nth-child(2) { 
+            width: 200px; 
+            height: 200px; 
+            bottom: -100px; 
+            right: -100px; 
+            animation-delay: 3s; 
+        }
+        
+        .circle:nth-child(3) { 
+            width: 150px; 
+            height: 150px; 
+            top: 50%; 
+            right: 10%; 
+            animation-delay: 6s; 
+        }
+        
+        .circle:nth-child(4) { 
+            width: 100px; 
+            height: 100px; 
+            bottom: 20%; 
+            left: 15%; 
+            animation-delay: 9s; 
+        }
 
         @keyframes float {
             0%, 100% { transform: translateY(0) rotate(0deg); }
             50% { transform: translateY(-50px) rotate(180deg); }
         }
 
+        /* المحتوى الرئيسي */
         .container {
             position: relative;
             z-index: 1;
@@ -80,6 +99,7 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
+        /* القسم الأيسر */
         .left-section {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             padding: 45px 40px;
@@ -91,6 +111,7 @@
             overflow: hidden;
         }
 
+        /* الشكل الزاوي */
         .left-section::before {
             content: '';
             position: absolute;
@@ -108,6 +129,7 @@
             z-index: 1;
         }
 
+        /* الشعار */
         .logo {
             width: 100px;
             margin-bottom: 20px;
@@ -142,6 +164,7 @@
             opacity: 0.92;
         }
 
+        /* المميزات */
         .features {
             display: flex;
             flex-direction: column;
@@ -184,6 +207,7 @@
             line-height: 1.4;
         }
 
+        /* القسم الأيمن - الفورم */
         .right-section {
             padding: 45px 35px;
             display: flex;
@@ -276,6 +300,7 @@
             cursor: not-allowed;
         }
 
+        /* Footer */
         .footer {
             text-align: center;
             margin-top: 25px;
@@ -290,25 +315,68 @@
             font-size: 1rem;
         }
 
+        /* Responsive */
         @media (max-width: 968px) {
-            .container { grid-template-columns: 1fr; }
-            .left-section::before { display: none; }
-            .left-section, .right-section { padding: 35px 30px; }
-            .title { font-size: 2.5rem; }
+            .container {
+                grid-template-columns: 1fr;
+            }
+
+            .left-section::before {
+                display: none;
+            }
+
+            .left-section {
+                padding: 35px 30px;
+            }
+
+            .right-section {
+                padding: 35px 30px;
+            }
+
+            .title {
+                font-size: 2.5rem;
+            }
         }
 
         @media (max-width: 600px) {
-            body { padding: 10px; }
-            .container { border-radius: 20px; }
-            .left-section, .right-section { padding: 30px 25px; }
-            .title { font-size: 2.2rem; }
-            .subtitle { font-size: 1.1rem; }
-            .description { font-size: 0.9rem; }
-            .logo { width: 85px; }
+            body {
+                padding: 10px;
+            }
+
+            .container {
+                border-radius: 20px;
+            }
+
+            .left-section {
+                padding: 30px 25px;
+            }
+
+            .right-section {
+                padding: 30px 25px;
+            }
+
+            .title {
+                font-size: 2.2rem;
+            }
+
+            .subtitle {
+                font-size: 1.1rem;
+            }
+
+            .description {
+                font-size: 0.9rem;
+            }
+
+            .logo {
+                width: 85px;
+            }
         }
 
-        .success-message, .error-message {
+        /* رسالة النجاح */
+        .success-message {
             display: none;
+            background: #4CAF50;
+            color: white;
             padding: 12px;
             border-radius: 10px;
             text-align: center;
@@ -317,17 +385,7 @@
             animation: slideDown 0.3s ease-out;
         }
 
-        .success-message {
-            background: #4CAF50;
-            color: white;
-        }
-
-        .error-message {
-            background: #f44336;
-            color: white;
-        }
-
-        .success-message.show, .error-message.show {
+        .success-message.show {
             display: block;
         }
 
@@ -335,9 +393,26 @@
             from { opacity: 0; transform: translateY(-10px); }
             to { opacity: 1; transform: translateY(0); }
         }
+
+        .error-message {
+            display: none;
+            background: #f44336;
+            color: white;
+            padding: 12px;
+            border-radius: 10px;
+            text-align: center;
+            margin-bottom: 15px;
+            font-weight: 600;
+            animation: slideDown 0.3s ease-out;
+        }
+
+        .error-message.show {
+            display: block;
+        }
     </style>
 </head>
 <body>
+    <!-- الخلفية المتحركة -->
     <div class="background-animation">
         <div class="circle"></div>
         <div class="circle"></div>
@@ -345,9 +420,12 @@
         <div class="circle"></div>
     </div>
 
+    <!-- المحتوى الرئيسي -->
     <div class="container">
+        <!-- القسم الأيسر -->
         <div class="left-section">
             <div class="left-content">
+                <!-- الشعار -->
                 <svg class="logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 694 1211">
                     <g transform="translate(1947 -6625)">
                         <g transform="translate(-2140 6432)">
@@ -365,6 +443,7 @@
                 <h2 class="subtitle">منصة تعليمية متكاملة</h2>
                 <p class="description">نعمل حالياً على إطلاق منصة تعليمية متكاملة لطلاب جامعة الملك فيصل للدبلوم عن بعد تساعدك على التفوق والنجاح في دراستك الجامعية</p>
                 
+                <!-- المميزات -->
                 <div class="features">
                     <div class="feature">
                         <div class="feature-icon">📚</div>
@@ -382,18 +461,21 @@
             </div>
         </div>
 
+        <!-- القسم الأيمن - الفورم -->
         <div class="right-section">
             <h2 class="form-title">تواصل معنا</h2>
             
+            <!-- رسالة النجاح -->
             <div class="success-message" id="successMessage">
                 تم إرسال رسالتك بنجاح! سنتواصل معك قريباً ✓
             </div>
 
+            <!-- رسالة الخطأ -->
             <div class="error-message" id="errorMessage">
-                عذراً، حدث خطأ في الإرسال. برنامج البريد الإلكتروني سيفتح الآن.
+                عذراً، حدث خطأ في الإرسال. يرجى المحاولة مرة أخرى.
             </div>
             
-            <form id="contactForm" action="https://formspree.io/f/xgvejkle" method="POST">
+            <form id="contactForm">
                 <div class="form-group">
                     <label for="name" class="form-label">الاسم الكامل</label>
                     <input type="text" id="name" name="name" class="form-input" placeholder="أدخل اسمك الكامل" required>
@@ -401,7 +483,7 @@
 
                 <div class="form-group">
                     <label for="email" class="form-label">البريد الإلكتروني</label>
-                    <input type="email" id="email" name="_replyto" class="form-input" placeholder="example@email.com" required>
+                    <input type="email" id="email" name="email" class="form-input" placeholder="example@email.com" required>
                 </div>
 
                 <div class="form-group">
@@ -413,10 +495,6 @@
                     <label for="message" class="form-label">رسالتك</label>
                     <textarea id="message" name="message" class="form-textarea" placeholder="اكتب رسالتك هنا..." required></textarea>
                 </div>
-
-                <input type="hidden" name="_cc" value="r.00@msn.com">
-                <input type="hidden" name="_subject" value="رسالة جديدة من موقع Quiz Tree">
-                <input type="text" name="_gotcha" style="display:none">
 
                 <button type="submit" class="submit-btn">
                     <span>إرسال الرسالة</span>
@@ -432,107 +510,93 @@
     </div>
 
     <script>
+        // معالجة إرسال الفورم
         const form = document.getElementById('contactForm');
         const successMessage = document.getElementById('successMessage');
         const errorMessage = document.getElementById('errorMessage');
-        const submitBtn = form.querySelector('.submit-btn');
-        const originalBtnText = submitBtn.innerHTML;
-
-        // Helper function to open mailto as fallback
-        function openMailtoFallback(formData) {
-            const name = formData.get('name') || '';
-            const email = formData.get('_replyto') || '';
-            const phone = formData.get('phone') || 'غير محدد';
-            const message = formData.get('message') || '';
-
-            const subject = encodeURIComponent('رسالة جديدة من موقع Quiz Tree');
-            const body = encodeURIComponent(
-                `الاسم: ${name}\n` +
-                `البريد الإلكتروني: ${email}\n` +
-                `رقم الهاتف: ${phone}\n\n` +
-                `الرسالة:\n${message}`
-            );
-
-            window.location.href = `mailto:r.00@msn.com?subject=${subject}&body=${body}`;
-        }
-
-        // Reset button state
-        function resetButton() {
-            submitBtn.innerHTML = originalBtnText;
-            submitBtn.disabled = false;
-        }
-
-        // Show loading state
-        function showLoading() {
-            submitBtn.innerHTML = '<span>جاري الإرسال...</span> ⏳';
-            submitBtn.disabled = true;
-        }
 
         form.addEventListener('submit', async function(e) {
             e.preventDefault();
-
-            // Hide previous messages
+            
+            // إخفاء الرسائل السابقة
             successMessage.classList.remove('show');
             errorMessage.classList.remove('show');
-
-            showLoading();
-
+            
+            const submitBtn = form.querySelector('.submit-btn');
+            const originalBtnText = submitBtn.innerHTML;
+            
+            // تغيير نص الزر
+            submitBtn.innerHTML = '<span>جاري الإرسال...</span> ⏳';
+            submitBtn.disabled = true;
+            
+            // جمع البيانات
             const formData = new FormData(form);
-
-            // Set a timeout for the request
-            const controller = new AbortController();
-            const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 second timeout
-
+            const data = {
+                name: formData.get('name'),
+                email: formData.get('email'),
+                phone: formData.get('phone') || 'غير محدد',
+                message: formData.get('message')
+            };
+            
             try {
-                const response = await fetch('https://formspree.io/f/xgvejkle', {
+                // المحاولة الأولى: Formspree
+                const formspreeResponse = await fetch('https://formspree.io/f/xgvejkle', {
                     method: 'POST',
                     body: formData,
                     headers: {
                         'Accept': 'application/json'
-                    },
-                    signal: controller.signal
+                    }
                 });
 
-                clearTimeout(timeoutId);
-
-                if (response.ok) {
-                    const data = await response.json();
-
-                    // Check for Formspree success response
-                    if (data.ok || response.status === 200) {
-                        successMessage.classList.add('show');
-                        form.reset();
-
-                        setTimeout(() => {
-                            successMessage.classList.remove('show');
-                        }, 5000);
-                    } else {
-                        throw new Error('Formspree response not ok');
-                    }
+                if (formspreeResponse.ok) {
+                    // النجاح
+                    successMessage.classList.add('show');
+                    form.reset();
+                    
+                    setTimeout(() => {
+                        successMessage.classList.remove('show');
+                    }, 5000);
                 } else {
-                    // Non-200 response
-                    const errorData = await response.json().catch(() => ({}));
-                    console.error('Formspree error:', response.status, errorData);
-                    throw new Error(`Formspree failed: ${response.status}`);
+                    throw new Error('Formspree failed');
                 }
             } catch (error) {
-                clearTimeout(timeoutId);
-                console.error('Form submission error:', error);
-
-                // Show error message and open mailto fallback
-                errorMessage.classList.add('show');
-
-                setTimeout(() => {
-                    openMailtoFallback(formData);
-                    errorMessage.classList.remove('show');
+                console.error('Error:', error);
+                
+                // المحاولة الثانية: mailto كحل بديل
+                try {
+                    const subject = encodeURIComponent('رسالة جديدة من موقع Quiz Tree');
+                    const body = encodeURIComponent(
+                        `الاسم: ${data.name}\n` +
+                        `البريد الإلكتروني: ${data.email}\n` +
+                        `رقم الهاتف: ${data.phone}\n\n` +
+                        `الرسالة:\n${data.message}`
+                    );
+                    
+                    window.location.href = `mailto:r.00@msn.com?subject=${subject}&body=${body}`;
+                    
+                    // إظهار رسالة النجاح
+                    successMessage.classList.add('show');
                     form.reset();
-                }, 1500);
+                    
+                    setTimeout(() => {
+                        successMessage.classList.remove('show');
+                    }, 5000);
+                } catch (mailtoError) {
+                    // إظهار رسالة الخطأ
+                    errorMessage.classList.add('show');
+                    
+                    setTimeout(() => {
+                        errorMessage.classList.remove('show');
+                    }, 5000);
+                }
             } finally {
-                resetButton();
+                // إعادة الزر لحالته الطبيعية
+                submitBtn.innerHTML = originalBtnText;
+                submitBtn.disabled = false;
             }
         });
 
-        // Background animation on mouse move
+        // تأثير الخلفية المتحركة
         document.addEventListener('mousemove', function(e) {
             const circles = document.querySelectorAll('.circle');
             circles.forEach((circle, index) => {
