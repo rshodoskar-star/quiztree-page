@@ -152,7 +152,7 @@
 
         .left-section {
             background: linear-gradient(135deg, var(--left-section-bg-start) 0%, var(--left-section-bg-end) 100%);
-            padding: 40px 35px;
+            padding: 38px 35px;
             color: white;
             display: flex;
             flex-direction: column;
@@ -179,7 +179,7 @@
         }
 
         .logo {
-            width: 130px;
+            width: 110px;
             margin-bottom: 18px;
             filter: brightness(0) invert(1) drop-shadow(0 5px 15px rgba(0, 0, 0, 0.2));
             animation: logoFloat 3s ease-in-out infinite;
@@ -191,24 +191,24 @@
         }
 
         .title {
-            font-size: 2.8rem;
+            font-size: 2.7rem;
             font-weight: 800;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
             text-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
             line-height: 1.2;
         }
 
         .subtitle {
-            font-size: 1.25rem;
+            font-size: 1.15rem;
             font-weight: 600;
-            margin-bottom: 8px;
+            margin-bottom: 9px;
             opacity: 0.95;
         }
 
         .description {
-            font-size: 0.95rem;
-            line-height: 1.7;
-            margin-bottom: 22px;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
             opacity: 0.92;
         }
 
@@ -223,7 +223,7 @@
             align-items: center;
             gap: 12px;
             background: rgba(255, 255, 255, 0.15);
-            padding: 10px 12px;
+            padding: 11px 14px;
             border-radius: 12px;
             backdrop-filter: blur(10px);
             transition: all 0.3s ease;
@@ -235,27 +235,27 @@
         }
 
         .feature-icon {
-            width: 42px;
-            height: 42px;
+            width: 40px;
+            height: 40px;
             background: white;
             color: var(--left-section-bg-start);
             border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 22px;
+            font-size: 20px;
             flex-shrink: 0;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
 
         .feature-text {
-            font-size: 0.95rem;
+            font-size: 0.92rem;
             font-weight: 500;
             line-height: 1.4;
         }
 
         .right-section {
-            padding: 40px 30px;
+            padding: 38px 30px;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -263,35 +263,35 @@
         }
 
         .form-title {
-            font-size: 1.8rem;
+            font-size: 1.65rem;
             font-weight: 800;
             color: var(--text-primary);
-            margin-bottom: 22px;
+            margin-bottom: 20px;
             text-align: center;
         }
 
         .form-group {
-            margin-bottom: 14px;
+            margin-bottom: 13px;
         }
 
         .form-label {
             display: block;
-            font-size: 0.9rem;
+            font-size: 0.87rem;
             font-weight: 600;
-            margin-bottom: 6px;
+            margin-bottom: 5px;
             color: var(--text-secondary);
         }
 
         .form-input,
         .form-textarea {
             width: 100%;
-            padding: 10px 12px;
+            padding: 10px 13px;
             border: 2px solid var(--input-border);
             border-radius: 10px;
             background: var(--input-bg);
             color: var(--text-primary);
             font-family: 'Tajawal', sans-serif;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             transition: all 0.3s ease;
         }
 
@@ -310,18 +310,18 @@
 
         .form-textarea {
             resize: vertical;
-            min-height: 90px;
+            min-height: 75px;
         }
 
         .submit-btn {
             width: 100%;
-            padding: 14px;
+            padding: 13px;
             background: linear-gradient(135deg, var(--left-section-bg-start) 0%, var(--left-section-bg-end) 100%);
             color: white;
             border: none;
             border-radius: 10px;
             font-family: 'Tajawal', sans-serif;
-            font-size: 1.05rem;
+            font-size: 1rem;
             font-weight: 700;
             cursor: pointer;
             transition: all 0.3s ease;
@@ -348,16 +348,16 @@
 
         .footer {
             text-align: center;
-            margin-top: 25px;
-            padding-top: 20px;
+            margin-top: 20px;
+            padding-top: 18px;
             border-top: 2px solid var(--border-color);
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             color: var(--text-tertiary);
         }
 
         .footer strong {
             color: var(--left-section-bg-start);
-            font-size: 1rem;
+            font-size: 0.95rem;
         }
 
         @media (max-width: 968px) {
@@ -365,16 +365,17 @@
             .left-section::before { display: none; }
             .left-section, .right-section { padding: 32px 28px; }
             .title { font-size: 2.3rem; }
+            .logo { width: 100px; }
         }
 
         @media (max-width: 600px) {
             body { padding: 10px; }
             .container { border-radius: 20px; }
-            .left-section, .right-section { padding: 28px 22px; }
+            .left-section, .right-section { padding: 28px 24px; }
             .title { font-size: 2rem; }
-            .subtitle { font-size: 1.1rem; }
-            .description { font-size: 0.9rem; }
-            .logo { width: 110px; }
+            .subtitle { font-size: 1.05rem; }
+            .description { font-size: 0.85rem; }
+            .logo { width: 90px; }
             .theme-toggle {
                 width: 44px;
                 height: 44px;
